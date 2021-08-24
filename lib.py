@@ -30,10 +30,10 @@ class ACTION:
     ARH = 'tar -czf Result.tar.gz Result/*'
     CallTrace = 'grep -i calltrace /var/log/kern.log'
     GRAPHICS = 'phoronix-test-suite benchmark gputest < Ans#1.txt > Result/Graph_info.txt '
-    CPU = 'MONITOR=cpu.temp phoronix-test-suite benchmark openssl < Ans#2.txt > Result/TestCPU_info.txt'
+    CPU = 'MONITOR=cpu.temp phoronix-test-suite benchmark cryptopp < Ans#2.txt > Result/TestCPU_info.txt'
     RAM = 'phoronix-test-suite benchmark sqlite < Ans#3.txt > Result/TestGPU_info.txt'
     TST = 'phoronix-test-suite benchmark pybench < Ans#3.txt > Result/TestTST_info.txt'
-    inst = 'sudo dpkg -i data/*.deb < echo "Y"' 
+    inst = 'sudo dpkg -i data/*.deb' 
     instf = 'sudo apt install -f'
     instl = 'sudo apt install lshw'
     

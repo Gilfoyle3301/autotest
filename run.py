@@ -1,11 +1,8 @@
 import lib
 import os
-import time
-from tqdm import tqdm
 
-for i in tqdm(range(10), desc = 'WARNING!!! LOADING TEST SCRIPT', unit= ' init', unit_scale=1):
-    time.sleep(0.01)
-print('Install additional package')
+os.mkdir('Result')
+os.mkdir('data')
 os.system(lib.ACTION.inst)
 os.system(lib.ACTION.instf)
 os.system(lib.ACTION.instl)
