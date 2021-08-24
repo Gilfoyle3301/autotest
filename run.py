@@ -1,8 +1,16 @@
-import tqdm
+import lib
+import os
 import time
-import MExam
+from tqdm import tqdm
 
-execute = [MExam.logs(),MExam.net(),MExam.stress(),MExam.res()]
+for i in tqdm(range(10), desc = 'WARNING!!! LOADING TEST SCRIPT', unit= ' init', unit_scale=1):
+    time.sleep(0.01)
+print('Install additional package')
+os.system(lib.ACTION.inst)
+os.system(lib.ACTION.instf)
+os.system(lib.ACTION.instl)
 
-for i in tqdm(range(execute)):
-    time.sleep(1)
+lib.logs()
+lib.net()
+lib.stress()
+lib.res()

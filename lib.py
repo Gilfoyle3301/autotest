@@ -29,52 +29,61 @@ class ACTION:
     MV = 'mv /tmp/astra-logs-* Result/'
     ARH = 'tar -czf Result.tar.gz Result/*'
     CallTrace = 'grep -i calltrace /var/log/kern.log'
-    GRAPHICS = 'phoronix-test-suite benchmark gputest < Ans#1.txt > Graph_info.txt '
-    CPU = 'MONITOR=cpu.temp,cpu.voltage phoronix-test-suite benchmark openssl < Ans#2.txt > Result/TestCPU_info.txt'
+    GRAPHICS = 'phoronix-test-suite benchmark gputest < Ans#1.txt > Result/Graph_info.txt '
+    CPU = 'MONITOR=cpu.temp phoronix-test-suite benchmark openssl < Ans#2.txt > Result/TestCPU_info.txt'
     RAM = 'phoronix-test-suite benchmark sqlite < Ans#3.txt > Result/TestGPU_info.txt'
     TST = 'phoronix-test-suite benchmark pybench < Ans#3.txt > Result/TestTST_info.txt'
+    inst = 'sudo dpkg -i data/*.deb < echo "Y"' 
+    instf = 'sudo apt install -f'
+    instl = 'sudo apt install lshw'
+    
 
 #INFO AND LOG
 def logs():
-    if (os.system(lib.ACTION.CallTrace)) != 256:
+    if (os.system(ACTION.CallTrace)) != 256:
            print ("Обнаруженны CallTraces")
     else:
-        os.system(lib.LOG.CreatLog)
+        os.system(LOG.CreatLog)
         os.system(lib.ACTION.MV)
 
     #SYSTEM INFORMATION
-    os.system(lib.LOG.CreatLSHW)  
-    os.system(lib.LOG.CreatCPUINFO)
-    os.system(lib.LOG.CreatCPUl)
-    os.system(lib.LOG.CreatLSPCI_NET)
+    os.system(LOG.CreatLSHW)  
+    os.system(LOG.CreatCPUINFO)
+    os.system(LOG.CreatCPUl)
+    os.system(LOG.CreatLSPCI_NET)
     #SOUND
-    os.system(lib.LOG.CreatAPLAY)
+    os.system(LOG.CreatAPLAY)
     #GRAPHICS
-    os.system(lib.LOG.CreatLSPCI_VGA)
-    os.system(lib.LOG.GLX_INF)
-    os.system(lib.LOG.GL)
-    os.system(lib.INFO.GLX)
+    os.system(LOG.CreatLSPCI_VGA)
+    os.system(LOG.GLX_INF)
+    os.system(LOG.GL)
+    os.system(INFO.GLX)
     
 #NETWORK
 def net():
     try:
-        subprocess.check_output(shlex.split(lib.NET.CreatPing))
+        subprocess.check_output(shlex.split(NET.CreatPing))
         print('Соединение установлено, производится анализ пропускной способности сети')
-        subprocess.check_output(shlex.split(lib.NET.CreatIPERF))
+        subprocess.check_output(shlex.split(NET.CreatIPERF))
         print('connection close')
     except subprocess.CalledProcessError: 
         print('Соединение не установленно или разорвано, устраните проблему')
 
 #STRESS TESTING
 def stress():
-    os.system(lib.ACTION.GRAPHICS)
-    os.system(lib.ACTION.RAM)
-    os.system(lib.ACTION.TST)
-    os.system(lib.ACTION.CPU)
+    print("RUN TEST GRAPHICS")
+    os.system(ACTION.GRAPHICS)
+    print("RUN TEST RAM")
+    os.system(ACTION.RAM)
+    print("RUN TEST TST")
+    os.system(ACTION.TST)
+    print("RUN TEST CPU")
+    os.system(ACTION.CPU)
+
 
 #CREAT RESULT
 def res():
-    os.system(lib.ACTION.ARH)
+    os.system(ACTION.ARH)
 
 
 
