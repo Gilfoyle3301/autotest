@@ -1,12 +1,7 @@
 import lib
 import os
-
-os.mkdir('Result')
-os.mkdir('data')
-os.system(lib.ACTION.inst)
-os.system(lib.ACTION.instf)
-os.system(lib.ACTION.instl)
-
+os.system(lib.install.inst)
+os.system(lib.install.instnet)
 lib.logs()
 lib.net()
 lib.stress()

@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*
 import os
 import subprocess
-import lib
 import shlex
 
 class LOG:
@@ -32,10 +31,11 @@ class ACTION:
     GRAPHICS = 'phoronix-test-suite benchmark gputest < Ans#1.txt > Result/Graph_info.txt '
     CPU = 'MONITOR=cpu.temp phoronix-test-suite benchmark cryptopp < Ans#2.txt > Result/TestCPU_info.txt'
     RAM = 'phoronix-test-suite benchmark sqlite < Ans#3.txt > Result/TestGPU_info.txt'
-    TST = 'phoronix-test-suite benchmark pybench < Ans#3.txt > Result/TestTST_info.txt'
-    inst = 'sudo dpkg -i data/*.deb' 
-    instf = 'sudo apt install -f'
-    instl = 'sudo apt install lshw'
+     
+    
+class install:
+    inst = 'cd data && sudo apt -y install ./*.deb && sudo apt -y install -f' 
+    instnet = 'sudo apt -y install lshw iperf'
     
 
 #INFO AND LOG
@@ -44,7 +44,7 @@ def logs():
            print ("Обнаруженны CallTraces")
     else:
         os.system(LOG.CreatLog)
-        os.system(lib.ACTION.MV)
+        os.system(ACTION.MV)
 
     #SYSTEM INFORMATION
     os.system(LOG.CreatLSHW)  
