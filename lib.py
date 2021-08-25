@@ -22,7 +22,7 @@ class INFO:
 
 class NET:
     CreatPing = 'ping -s 1400 -i 0.1 -c 10 10.77.80.77'
-    CreatIPERF = "script -c 'iperf -c 10.77.80.77 -P 100 -r -t 100' > Result/ip_info.txt" 
+    CreatIPERF = "script -c 'iperf -c 10.77.80.77 -P 100 -r -t 100' Result/ip_info.txt" 
 
 class ACTION:
     MV = 'mv /tmp/astra-logs-* Result/'
@@ -75,8 +75,6 @@ def stress():
     os.system(ACTION.GRAPHICS)
     print("RUN TEST RAM")
     os.system(ACTION.RAM)
-    print("RUN TEST TST")
-    os.system(ACTION.TST)
     print("RUN TEST CPU")
     os.system(ACTION.CPU)
 
